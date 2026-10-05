@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import app from "../src/app.js";
 import { clearDatabase } from "./utils/clearDatabase.js";
 import { MontadoraFactory } from "./factories/montadoraFactory.js";
+import { response } from "express";
 
 describe("API montadoras", () => {
   beforeEach(async () => {
@@ -29,3 +30,4 @@ describe("API montadoras", () => {
     expect(response.body.data).toHaveProperty("insertId");
   });
 });
+describe
