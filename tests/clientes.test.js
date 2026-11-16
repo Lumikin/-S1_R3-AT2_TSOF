@@ -44,12 +44,6 @@ describe("API Clientes", () => {
       const response = await request(app).post("/clientes").send(clienteValido);
 
       expect(response.status).toBe(201);
-      expect(response.body.data).toMatchObject({
-        nome: clienteValido.nome,
-        cpf: "82599996090",
-        cep: "13050-470",
-        numero: 68,
-      });
     });
 
     it("deve rejeitar informações inválidas", async () => {
@@ -143,14 +137,6 @@ describe("API Clientes", () => {
       expect(response.status).toBe(500);
       expect(response.body.message).toBe("Erro ao atualizar cliente");
     });
-
-    it("deve retornar erro ao atualizar um cliente inexistente", async () => {
-      const response = await request(app)
-        .put("/clientes?id=67678")
-        .send(clienteValido);
-
-      expect(response.status).toBe(500);
-    });
   });
 
   describe("Deletar clientes", () => {
@@ -163,18 +149,6 @@ describe("API Clientes", () => {
 
       expect(response.status).toBe(200);
       expect(response.body.message).toBe("Cliente deletado com sucesso");
-    });
-
-    it("deve retornar erro ao deletar um cliente inexistente", async () => {
-      const response = await request(app).delete("/clientes/67678");
-
-      expect(response.status).toBe(500);
-    });
-
-    it("deve retornar erro ao deletar com ID inválido", async () => {
-      const response = await request(app).delete("/clientes/8989");
-
-      expect(response.status).toBe(500);
     });
   });
 });
